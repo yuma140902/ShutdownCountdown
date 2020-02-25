@@ -36,6 +36,7 @@
 			this.timeRemainingLabel = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.shutdownNowBtn = new System.Windows.Forms.Button();
 			this.contextMenuNotifyIcon.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -83,7 +84,7 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(262, 159);
+			this.label1.Location = new System.Drawing.Point(262, 165);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(206, 12);
 			this.label1.TabIndex = 2;
@@ -98,11 +99,23 @@
 			this.label2.TabIndex = 3;
 			this.label2.Text = "シャットダウンまで残り";
 			// 
+			// shutdownNowBtn
+			// 
+			this.shutdownNowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.shutdownNowBtn.Location = new System.Drawing.Point(12, 151);
+			this.shutdownNowBtn.Name = "shutdownNowBtn";
+			this.shutdownNowBtn.Size = new System.Drawing.Size(152, 23);
+			this.shutdownNowBtn.TabIndex = 4;
+			this.shutdownNowBtn.Text = "今すぐにシャットダウン";
+			this.shutdownNowBtn.UseVisualStyleBackColor = true;
+			this.shutdownNowBtn.Click += new System.EventHandler(this.shutdownNowBtn_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(480, 180);
+			this.ClientSize = new System.Drawing.Size(480, 186);
+			this.Controls.Add(this.shutdownNowBtn);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.timeRemainingLabel);
@@ -130,6 +143,7 @@
 		private System.Windows.Forms.Label timeRemainingLabel;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button shutdownNowBtn;
 	}
 }
 

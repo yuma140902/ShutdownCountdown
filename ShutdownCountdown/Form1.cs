@@ -104,5 +104,19 @@ namespace ShutdownCountdown
 			}
 		}
 
+
+		private void shutdownNowBtn_Click(object sender, EventArgs e)
+		{
+			var result = MessageBox.Show(
+				"本当にシャットダウンして良いですか。\n保存されていないデータは失われます。", 
+				"確認", 
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+			if(result != DialogResult.Yes) {
+				return;
+			}
+
+			Win32Shutdown.Shutdown();
+		}
 	}
 }
