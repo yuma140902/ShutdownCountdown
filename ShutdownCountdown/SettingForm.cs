@@ -19,7 +19,9 @@ namespace ShutdownCountdown
 
 		private void SettingForm_Load(object sender, EventArgs e)
 		{
-			dateTimePicker.Value = DateTime.Now + TimeSpan.FromMinutes(60);
+			var t = DateTime.Now + TimeSpan.FromMinutes(60);
+			var timeToShutdown = new DateTime(t.Year, t.Month, t.Day, t.Hour, t.Minute, second: 0, millisecond: 0);
+			dateTimePicker.Value = timeToShutdown;
 		}
 
 		private void cancelBtn_Click(object sender, EventArgs e)
