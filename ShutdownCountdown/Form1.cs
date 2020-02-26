@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShutdownCountdown.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,17 +15,16 @@ namespace ShutdownCountdown
 {
 	public partial class Form1 : Form
 	{
-		public Form1()
+		private readonly ModelTime Model;
+
+		public Form1(ModelTime model)
 		{
 			InitializeComponent();
+			this.Model = model;
 		}
-
-		private int SecondsRemaining;
-		private bool IsInWarningPhase = false;
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			this.SecondsRemaining = (int)(Program.TimeToShutdown - DateTime.Now).TotalSeconds;
 			timer.Enabled = true;
 		}
 
@@ -34,7 +34,7 @@ namespace ShutdownCountdown
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!this.IsInWarningPhase) {
+			if (!this.Model.IsInWarningPhase()) {
 				this.Visible = false;
 			}
 
@@ -54,7 +54,7 @@ namespace ShutdownCountdown
 				this.WindowState = FormWindowState.Normal;
 
 				// 残り時間が5分以上のときのみ非表示にする
-				if (!this.IsInWarningPhase) {
+				if (!this.Model.IsInWarningPhase()) {
 					this.Visible = false;
 				}
 			}
@@ -67,10 +67,6 @@ namespace ShutdownCountdown
 
 		private void StartWarningPhase()
 		{
-			if (this.IsInWarningPhase) {
-				return;
-			}
-
 			void DecorateUI()
 			{
 				this.BackColor = Color.Red;
@@ -78,28 +74,25 @@ namespace ShutdownCountdown
 				contextMenuNotifyIcon.BackColor = Color.Red;
 			}
 
-			this.IsInWarningPhase = true;
 			DecorateUI();
+			this.TopMost = true;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
 		{
-			--SecondsRemaining;
 			if (this.Visible) {
-				var timeLeft = TimeSpan.FromSeconds(SecondsRemaining);
-				timeRemainingLabel.Text = timeLeft.ToString(@"hh\:mm\:ss");
-				if (timeLeft.TotalMinutes <= 5) {
+				timeRemainingLabel.Text = this.Model.TimeRemaining().ToString(@"hh\:mm\:ss");
+				if (this.Model.IsInWarningPhase()) {
 					StartWarningPhase();
-					this.TopMost = true;
 				}
 			}
 			else {
-				if (SecondsRemaining <= 60 * 5) {
+				if (this.Model.IsInWarningPhase()) {
 					this.Visible = true;
 				}
 			}
 
-			if (SecondsRemaining <= 0) {
+			if (this.Model.IsInShutdownPhase()) {
 				Win32Shutdown.Shutdown();
 			}
 		}
@@ -112,11 +105,11 @@ namespace ShutdownCountdown
 				"確認", 
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-			if(result != DialogResult.Yes) {
-				return;
+			if(result == DialogResult.Yes) {
+				Win32Shutdown.Shutdown();
 			}
 
-			Win32Shutdown.Shutdown();
 		}
+
 	}
 }

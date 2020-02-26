@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShutdownCountdown.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +34,7 @@ namespace ShutdownCountdown
 		private void okBtn_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
-			Program.TimeToShutdown = dateTimePicker.Value;
+			Program.Model = new ModelTime(dateTimePicker.Value);
 			this.Close();
 		}
 	}

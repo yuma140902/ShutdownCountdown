@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShutdownCountdown.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace ShutdownCountdown
 	public static class Program
 	{
 
-		public static DateTime TimeToShutdown;
+		public static ModelTime Model;
 
 		/// <summary>
 		/// アプリケーションのメイン エントリ ポイントです。
@@ -26,7 +27,7 @@ namespace ShutdownCountdown
 				return;
 			}
 
-			Application.Run(new Form1());
+			Application.Run(new Form1(Model));
 		}
 	}
 }
