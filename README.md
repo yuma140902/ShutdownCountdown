@@ -1,5 +1,6 @@
 # ShutdownCountdown
 [![Latest Release v0.0.0-alpha.1](https://img.shields.io/badge/latest-v0.0.0--alpha.1-yellowgreen)](https://github.com/yuma140902/ShutdownCountdown/releases)
+[![MPL2.0 License](https://img.shields.io/badge/License-MPL2.0-blue)](LICENSE)
 
 指定した時間にPCをシャットダウンする。5分前になると警告を表示する。ついパソコンを使いすぎてしまう人向け。
 
