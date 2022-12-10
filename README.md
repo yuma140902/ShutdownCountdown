@@ -6,6 +6,18 @@
 
 ![スクリーンショット](https://i.imgur.com/sq9EzWg.png)
 
+## インストール
+
+[Releases](https://github.com/yuma140902/ShutdownCountdown/releases)からインストーラまたはポータブル版exeをダウンロードできます。
+
+### winget
+
+wingetを使っている場合は以下のコマンドでインストールできます。
+
+```sh
+winget install yuma14.ShutdownCountdown
+```
+
 ## 動作環境
  - .NET Framework 4.7.2
 
