@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Management;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace ShutdownCountdown
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			timer.Enabled = true;
+			this.Text = $"{this.Text} v{Assembly.GetExecutingAssembly().GetName().Version.ToString(3)}";
 		}
 
 
@@ -110,6 +112,5 @@ namespace ShutdownCountdown
 			}
 
 		}
-
-	}
+    }
 }
